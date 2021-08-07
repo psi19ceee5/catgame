@@ -1,13 +1,14 @@
 import os
 import sys
 import pygame as pg
+import time
+import random
 from random import randint
 from objects import utilities as ut
 from objects import dogowner, config as cfg
 
-#from objects import utilities
-#from objects import dogowner
 pg.init()
+random.seed(time.time())
 
 main_dir = os.path.split(os.path.abspath(__file__))[0]
 data_dir = os.path.join(main_dir, "data")

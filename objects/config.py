@@ -4,3 +4,4 @@ vfields = 6
 fps = 144
 black = 0, 0, 0
 white = 255, 255, 255
+invader_base_speed = (1./30.)*width

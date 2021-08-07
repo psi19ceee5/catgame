@@ -2,5 +2,6 @@ venv
 activate
 *~
 \#*
+.\#*
 __pycache__
 *.png
