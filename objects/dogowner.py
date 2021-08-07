@@ -11,6 +11,7 @@ class DogOwner(movable.Movable):
     def set_init_vfield(self, fieldnr):
         vpos = (fieldnr + 0.8)*(cfg.height/cfg.vfields)
         super().setpos_leftbottom(cfg.width,vpos)
+        self.draw = True
         
     def update(self):
         if self.velocity_control() :

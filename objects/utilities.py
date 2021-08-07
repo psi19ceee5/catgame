@@ -24,3 +24,5 @@ class ImageLoader:
         return image, image.get_rect()
 
 imgld = ImageLoader()
+
+

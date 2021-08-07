@@ -5,6 +5,7 @@ import time
 class Drawable:
 
     colorkey = None
+    draw = False
     
     def __init__(self, object_stack):
         self.image, self.rect = ut.imgld.load_image(self.imagefile, self.colorkey)
@@ -14,6 +15,6 @@ class Drawable:
     def setpos_leftbottom(self, xpos, ypos):
         self.rect.bottom = ypos
         self.rect.left = xpos
-    
+
     def update(self):
         pass

@@ -5,7 +5,9 @@ import time
 import random
 from random import randint
 from objects import utilities as ut
-from objects import dogowner, config as cfg
+from objects import dogowner
+from objects import uglycat
+from objects import config as cfg
 from objects import field as fld
 from objects import objectstack as objs
 
@@ -22,8 +24,6 @@ def main():
 
     # generation of field should also be wrapped within a class
     ut.imgld.set_data_dir(data_dir)
-#    field, fieldrect = ut.imgld.load_image("background_field.png")
-#    object_stack = [(field, fieldrect, "field")]
     object_stack = objs.Objectstack()
     field = fld.Field(object_stack)
 
@@ -38,7 +38,10 @@ def main():
                 sys.exit()
             elif event.type == pg.MOUSEBUTTONDOWN:
                  pos = pg.mouse.get_pos()
-                 place_cat(pos, object_stack)
+                 if object_stack.isInField(pos):
+                     cat = uglycat.UglyCat(object_stack)
+                     cat.setpos(pos, object_stack)
+                     print(object_stack.size())
 
         object_stack.update()
                  
