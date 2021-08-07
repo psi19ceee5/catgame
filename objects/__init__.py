@@ -1,1 +1,1 @@
-__all__ = ["config","utilities", "dogowner"]
+__all__ = ["config","utilities", "drawable", "movable", "dogowner", "uglycat", "field", "objectstack"]

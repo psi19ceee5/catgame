@@ -6,6 +6,8 @@ import random
 from random import randint
 from objects import utilities as ut
 from objects import dogowner, config as cfg
+from objects import field as fld
+from objects import objectstack as objs
 
 pg.init()
 random.seed(time.time())
@@ -20,12 +22,14 @@ def main():
 
     # generation of field should also be wrapped within a class
     ut.imgld.set_data_dir(data_dir)
-    field, fieldrect = ut.imgld.load_image("background_field.png")
-    object_stack = [(field, fieldrect, "field")]
+#    field, fieldrect = ut.imgld.load_image("background_field.png")
+#    object_stack = [(field, fieldrect, "field")]
+    object_stack = objs.Objectstack()
+    field = fld.Field(object_stack)
 
     # generate a dummy dog owner -- for testing
     invader = dogowner.DogOwner(object_stack)
-    invader.startpos(randint(1,6))
+    invader.set_init_vfield(randint(1,5))
     
     running = True
     while running:
@@ -36,12 +40,11 @@ def main():
                  pos = pg.mouse.get_pos()
                  place_cat(pos, object_stack)
 
-        invader.update()
+        object_stack.update()
                  
         pg.time.Clock().tick(cfg.fps)
         screen.fill(cfg.white)
-        for obj in object_stack:
-            screen.blit(obj[0], obj[1])
+        object_stack.blit(screen)
         pg.display.flip()
 
 if __name__ == "__main__":
