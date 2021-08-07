@@ -11,7 +11,6 @@ class ImageLoader:
     def load_image(self, name, colorkey=None):
         fullname = os.path.join(self.data_dir, name)
         try:
-            print(fullname)
             image = pg.image.load(fullname)
         except pg.error:
             print("Cannot load image:", fullname)

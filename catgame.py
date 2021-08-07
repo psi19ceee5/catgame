@@ -16,7 +16,6 @@ random.seed(time.time())
 
 main_dir = os.path.split(os.path.abspath(__file__))[0]
 data_dir = os.path.join(main_dir, "data")
-print(data_dir)
 
 screen = pg.display.set_mode(cfg.size)
 
@@ -29,7 +28,7 @@ def main():
 
     # generate a dummy dog owner -- for testing
     invader = dogowner.DogOwner(object_stack)
-    invader.set_init_vfield(randint(1,5))
+    invader.set_init_vfield(randint(0,5))
     
     running = True
     while running:
@@ -40,8 +39,7 @@ def main():
                  pos = pg.mouse.get_pos()
                  if object_stack.isInField(pos):
                      cat = uglycat.UglyCat(object_stack)
-                     cat.setpos(pos, object_stack)
-                     print(object_stack.size())
+                     cat.setpos(pos, field, object_stack)
 
         object_stack.update()
                  
@@ -49,6 +47,8 @@ def main():
         screen.fill(cfg.white)
         object_stack.blit(screen)
         pg.display.flip()
+
+    pg.quit()
 
 if __name__ == "__main__":
     main()

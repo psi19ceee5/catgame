@@ -25,9 +25,9 @@ class Objectstack:
             if item.tag == "field" :
                 return item.rect.collidepoint(pos)
 
-    def isInObject(self, pos, tag) :
+    def isPointInObject(self, pos, tag) :
          for item in self.stack :
-             if item.tag == tag :
+             if item.tag == tag or item.tag == "any" :
                  if item.draw == True :
                      if item.rect.collidepoint(pos) :
                          return True
