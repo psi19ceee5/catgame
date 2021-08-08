@@ -3,16 +3,17 @@ from objects import movable
 
 class DogOwner(movable.Movable):
     
-    speed = 1*cfg.invader_base_speed
+    trans_speed = 1*cfg.invader_base_speed
     imagefile = "dogowner.png"
     tag = "dogowner"
     colorkey = -1
     
     def set_init_vfield(self, fieldnr):
         vpos = (fieldnr + 0.8)*(cfg.height/cfg.vfields)
-        super().setpos_leftbottom(cfg.width,vpos)
+        super().setpos_init_leftbottom(cfg.width,vpos)
         self.draw = True
         
     def update(self):
-        if self.velocity_control() :
-            self.rect.move_ip((-1, 0))
+        npix = self.pixels_to_move()
+        if npix > 0:
+            self.rect.move_ip((-1*npix, 0))

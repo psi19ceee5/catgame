@@ -6,13 +6,15 @@ class UglyCat(movable.Movable):
     imagefile = "uglycat.png"
     tag = "cat"
     colorkey = -1
+    cont_wiggle_amplitude = 0.1
+    cont_wiggle_freq = 0.5
 
     def setpos(self, pos, field, object_stack):
         cellwidth = cfg.width/cfg.hfields
         cellheight = cfg.height/cfg.vfields
         hpos = pos[0] - pos[0]%cellwidth
         vpos = pos[1] - pos[1]%cellheight + cellheight
-        super().setpos_leftbottom(hpos, vpos)
+        super().setpos_init_leftbottom(hpos, vpos)
         hcoord = hpos/cellwidth
         vcoord = vpos/cellheight - 1
         if field.cell_is_occupied((hcoord, vcoord)) :
