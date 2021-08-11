@@ -1,5 +1,6 @@
 import os
 import pygame as pg
+from objects import config as cfg
 
 class ImageLoader:
     def __init__(self):
@@ -20,6 +21,11 @@ class ImageLoader:
             if colorkey == -1:
                 colorkey = image.get_at((0, 0))
             image.set_colorkey(colorkey, pg.RLEACCEL)
+        native_width = round(image.get_rect().width)
+        native_height = round(image.get_rect().height)
+        width = native_width * round(cfg.width / cfg.owidth)
+        height = native_height * round(cfg.height / cfg.oheight)
+        image = pg.transform.scale(image, (width, height))
         return image, image.get_rect()
 
 imgld = ImageLoader()

@@ -49,6 +49,7 @@ def main():
         pg.display.flip()
 
     pg.quit()
+    sys.exit()
 
 if __name__ == "__main__":
     main()

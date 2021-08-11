@@ -1,4 +1,5 @@
-size = width, height = 960, 540
+size = width, height = 1920, 1080
+orig_size = owidth, oheight = 960, 540
 hfields = 10
 vfields = 6
 fps = 30
