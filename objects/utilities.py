@@ -23,11 +23,9 @@ class ImageLoader:
             image.set_colorkey(colorkey, pg.RLEACCEL)
         native_width = round(image.get_rect().width)
         native_height = round(image.get_rect().height)
-        width = native_width * round(cfg.width / cfg.owidth)
-        height = native_height * round(cfg.height / cfg.oheight)
+        width =  round(native_width * (cfg.width / cfg.owidth))
+        height = round(native_height * (cfg.height / cfg.oheight))
         image = pg.transform.scale(image, (width, height))
         return image, image.get_rect()
 
 imgld = ImageLoader()
-
-
