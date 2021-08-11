@@ -32,14 +32,22 @@ def main():
     
     running = True
     while running:
-        for event in pg.event.get():
-            if event.type == pg.QUIT:
+        for event in pg.event.get() :
+            if event.type == pg.QUIT :
                 sys.exit()
             elif event.type == pg.MOUSEBUTTONDOWN:
                  pos = pg.mouse.get_pos()
                  if object_stack.isInField(pos):
                      cat = uglycat.UglyCat(object_stack)
                      cat.setpos(pos, field, object_stack)
+            elif event.type == pg.KEYDOWN and event.key == pg.K_f :
+                if screen.get_flags() and cfg.fullscreen:
+                    pg.display.set_mode(cfg.size)
+                    cfg.fullscreen = False
+                else :
+                    pg.display.set_mode((0,0), pg.NOFRAME)
+                    pg.display.toggle_fullscreen()
+                    cfg.fullscreen = True
 
         object_stack.update()
                  
