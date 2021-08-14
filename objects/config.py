@@ -1,5 +1,6 @@
 size = width, height = 1440, 810
 orig_size = owidth, oheight = 960, 540
+display_size = dwidth, dheight = 1920, 1080
 hfields = 10
 vfields = 6
 fps = 30

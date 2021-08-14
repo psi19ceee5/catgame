@@ -13,7 +13,11 @@ class Objectstack:
 
     def update(self) :
         for item in self.stack :
-            item.update()
+            item.update(self)
+
+    def adapt_fullscreen(self) :
+        for item in self.stack :
+            item.adapt_fullscreen()
 
     def blit(self, screen) :
         for item in self.stack :
