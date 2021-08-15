@@ -10,8 +10,8 @@ class UglyCat(movable.Movable):
     cont_wiggle_freq = 0.5
 
     def setpos(self, pos, field, object_stack):
-        cellwidth = cfg.width/cfg.hfields
-        cellheight = cfg.height/cfg.vfields
+        cellwidth = field.image.get_width()/cfg.hfields
+        cellheight = field.image.get_height()/cfg.vfields
         hpos = pos[0] - pos[0]%cellwidth
         vpos = pos[1] - pos[1]%cellheight + cellheight
         super().setpos_init_leftbottom(hpos, vpos)

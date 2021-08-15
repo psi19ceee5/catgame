@@ -44,9 +44,14 @@ class Movable(drawable.Drawable):
         self.setpos_leftbottom(self.pos[0], self.pos[1])
 
     def continuous_wiggle(self) :
-        vscale = round(self.origimage.get_height()*(1+self.cont_wiggle_amplitude*math.sin(2*math.pi*self.cont_wiggle_freq*(time.time() - self.inittime))))
-        hscale = round(self.origimage.get_width()*(1-self.cont_wiggle_amplitude*0.5*math.sin(2*math.pi*self.cont_wiggle_freq*(time.time() - self.inittime))))
-        self.image = pg.transform.scale(self.origimage, (hscale, vscale))
+        if cfg.fullscreen == True :
+            vscale = round(self.origimage_scaled.get_height()*(1+self.cont_wiggle_amplitude*math.sin(2*math.pi*self.cont_wiggle_freq*(time.time() - self.inittime))))
+            hscale = round(self.origimage_scaled.get_width()*(1-self.cont_wiggle_amplitude*0.5*math.sin(2*math.pi*self.cont_wiggle_freq*(time.time() - self.inittime))))
+            self.image = pg.transform.scale(self.origimage_scaled, (hscale, vscale))
+        else :
+            vscale = round(self.origimage.get_height()*(1+self.cont_wiggle_amplitude*math.sin(2*math.pi*self.cont_wiggle_freq*(time.time() - self.inittime))))
+            hscale = round(self.origimage.get_width()*(1-self.cont_wiggle_amplitude*0.5*math.sin(2*math.pi*self.cont_wiggle_freq*(time.time() - self.inittime))))
+            self.image = pg.transform.scale(self.origimage, (hscale, vscale))
         self.rect = self.image.get_rect()
         self.setpos_leftbottom(self.pos[0], self.pos[1])
 

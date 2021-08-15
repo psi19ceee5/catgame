@@ -46,13 +46,13 @@ def main():
 #                   pg.display.toggle_fullscreen()
                     cfg.fullscreen = False
                     object_stack.adapt_fullscreen()
-                    time.sleep(0.1)
+                    time.sleep(0.3)
                 else :
-                    pg.display.set_mode((cfg.display_size), pg.NOFRAME)
+                    pg.display.set_mode((cfg.display_size), pg.NOFRAME | pg.FULLSCREEN)
 #                    pg.display.toggle_fullscreen()
                     cfg.fullscreen = True
                     object_stack.adapt_fullscreen()
-                    time.sleep(0.1)
+                    time.sleep(0.3)
 
         object_stack.update()
                  

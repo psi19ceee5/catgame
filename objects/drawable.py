@@ -9,6 +9,8 @@ class Drawable:
     draw = False
     despawned = False
     pos = (0,0)
+    hscale = 1
+    vsale = 1
     
     def __init__(self, object_stack):
         # import image and copy of it for reference
@@ -19,6 +21,14 @@ class Drawable:
         # save timestamp of object creation
         self.timestamp = time.time()
         self.inittime = self.timestamp
+        # calc fullscreen reslution
+        self.hscale = cfg.dwidth / cfg.width
+        self.vscale = cfg.dheight / cfg.height
+        width_scaled = round(self.image.get_width() * self.hscale)
+        height_scaled = round(self.image.get_height() * self.vscale)
+        self.origimage_scaled = pg.transform.scale(self.origimage, (width_scaled, height_scaled))
+        self.origrect_scaled = self.origimage_scaled.get_rect()
+        
 
     def setpos_init_leftbottom(self, xpos, ypos):
         self.rect.bottom = ypos
@@ -34,11 +44,13 @@ class Drawable:
 
     def adapt_fullscreen(self) :
         if cfg.fullscreen == True :
-            hscale = round(self.image.get_width() * (cfg.dwidth / cfg.width))
-            vscale = round(self.image.get_height() * (cfg.dheight / cfg.height))
-            self.image = pg.transform.scale(self.origimage, (hscale, vscale))
+            self.image = self.origimage_scaled
+            self.rect = self.origrect_scaled
+            self.pos = self.pos[0] * self.hscale, self.pos[1] * self.vscale
         else :
-            self.image = pg.transform.scale(self.origimage, (self.origimage.get_width(), self.origimage.get_height()))
+            self.image = self.origimage
+            self.rect = self.origrect
+            self.pos = self.pos[0] / self.hscale, self.pos[1] / self.vscale
 
     def check_drawing(self) :
         # to be overridden by children
